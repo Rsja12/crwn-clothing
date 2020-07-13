@@ -18,4 +18,5 @@ const MenuItem = ({size, history, linkUrl, match, imageUrl, title}) => {
     )
 }
 
+// withRouter allows this component to get access to location, match, and history from even though it's not directly rendered by <Route />
 export default withRouter(MenuItem)
