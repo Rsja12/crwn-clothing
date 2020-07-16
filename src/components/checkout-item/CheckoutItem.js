@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import './CheckoutItem.scss'
-import { removeItem } from '../../redux/cart/cartActions'
+import { clearItem, addItem, removeItem } from '../../redux/cart/cartActions'
 
-const CheckoutItem = ({ item, removeItem }) => {
+const CheckoutItem = ({ item, clearItem, addItem, removeItem }) => {
     const { imageUrl, name, quantity, price } = item
     return (
         <div className='checkout-item'>
@@ -12,12 +12,17 @@ const CheckoutItem = ({ item, removeItem }) => {
                 <img alt='item' src={imageUrl} />
             </div>
             <span className='name'>{name}</span>
-            <span className='quantity'>{quantity}</span>
+            <span className='quantity'>
+                <div onClick={() => removeItem(item)} className='arrow'>
+                    &#10094;
+                </div>
+                <span className='value'>{quantity}</span>
+                <div onClick={() => addItem(item)} className='arrow'>
+                        &#10095;
+                </div>
+            </span>
             <span className='price'>{price}</span>
-            <div 
-                onClick={() => removeItem(item)}
-                className='remove-button'
-            >
+            <div onClick={() => clearItem(item)} className='remove-button'>
                 {/* utf8 dingbat */}
                 &#10005;
             </div>
@@ -25,4 +30,4 @@ const CheckoutItem = ({ item, removeItem }) => {
     )
 }
 
-export default connect(null, { removeItem })(CheckoutItem)
+export default connect(null, { clearItem, removeItem, addItem })(CheckoutItem)
