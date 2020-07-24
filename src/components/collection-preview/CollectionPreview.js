@@ -1,12 +1,18 @@
 import React from 'react'
+import { Link, withRouter } from 'react-router-dom'
 
 import './CollectionPreview.scss'
 import CollectionItem from '../collection-item/CollectionItem'
 
-const CollectionPreview = ({ title, items }) => {
+const CollectionPreview = ({ title, items, match }) => {
     return (
         <div className='collection-preview'>
-            <h1 className='title'>{title.toUpperCase()}</h1>
+            <Link 
+                to={`${match.path}/${title.toLowerCase()}`}
+                className='title'
+            >
+                {title.toUpperCase()}
+            </Link>
             <div className='preview'>
                 {
                     // filter to only get the first 4 items in the items array
@@ -20,4 +26,4 @@ const CollectionPreview = ({ title, items }) => {
     )
 }
 
-export default CollectionPreview
+export default withRouter(CollectionPreview)
