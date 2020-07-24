@@ -1,6 +1,5 @@
 import React from 'react'
 
-// import './HomePage.scss'
 import { HomePageContainer } from './homePage.styles'
 import Directory from '../../components/directory/Directory'
 
