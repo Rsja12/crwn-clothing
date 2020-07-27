@@ -21,21 +21,23 @@ import { selectCollectionsForPreview } from './redux/shop/shop.selectors'
 const App = ({ currentUser, setCurrentUser }) => {
 
   useEffect(() => {
-      auth.onAuthStateChanged(async userAuth => {
-        if (userAuth) {
-          const userRef = await createUserProfileDocument(userAuth);
+      
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-          userRef.onSnapshot(snapshot => {
-            setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-            });
+        userRef.onSnapshot(snapshot => {
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
           });
-          
-        }
+        });
 
-        setCurrentUser(userAuth)
-      })
+      }
+
+      setCurrentUser(userAuth)
+    })
+
   }, [setCurrentUser])
 
   return (
