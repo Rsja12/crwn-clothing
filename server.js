@@ -43,5 +43,3 @@ app.post('/payment', (req, res) => {
     }
   });
 });
-
-// test comment
